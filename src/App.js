@@ -1,12 +1,12 @@
+import Body from './components/Body';
 
-import './App.css';
 
-function App() {
+const App = props => {
   return (
-    <div className="App">
-      <h1 className='text-3xl font-bold text-green-300'>Hi Harish Kumar !</h1>
-    </div>
-  );
+    <div><Body/></div>
+  )
 }
+
+
 
 export default App;
