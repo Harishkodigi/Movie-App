@@ -1,6 +1,12 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkvalidData } from "../utils/validate";
+import { BG_URL } from "../utils/constant";
+import { auth } from "../utils/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -10,25 +16,55 @@ const Login = () => {
   const password = useRef(null);
   const name = useRef(null);
 
-  const toggleSignInForm = () => {
-    setIsSignInForm(!isSignInForm);
+  const handleButtonClick = () => {
+    const message = checkvalidData(email.current.value, password.current.value);
+    setErrorMessage(message);
+    if (message) return;
+    if (!isSignInForm) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " " + errorMessage);
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " " + errorMessage);
+        });
+    }
   };
 
-  const handleButtonClick = () => {
-    const message = checkvalidData(email.current.value, password.current.value,name.current.value);
-    console.log(message);
-
-    setErrorMessage(message);
+  const toggleSignInForm = () => {
+    setIsSignInForm(!isSignInForm);
   };
 
   return (
     <div>
       <Header />
       <div className="absolute">
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/893a42ad-6a39-43c2-bbc1-a951ec64ed6d/1d86e0ac-428c-4dfa-9810-5251dbf446f8/IN-en-20231002-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt="logo"
-        />
+        <img src={BG_URL} alt="logo" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
