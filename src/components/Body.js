@@ -8,8 +8,6 @@ import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "./createSlice";
 
-
-
 const Body = () => {
   const dispatch = useDispatch();
 
@@ -22,20 +20,17 @@ const Body = () => {
       path: "/browse",
       element: <Browse />,
     },
-  
-
   ]);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // console.log(user);
         const { uid, displayName, email } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
       } else {
         dispatch(removeUser);
       }
     });
-  },[]);
+  }, []);
 
   return (
     <div>
