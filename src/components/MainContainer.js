@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import VedioTitle from "./VedioTitle"
 import VedioBackground from "./VedioBackground"
+import SecondaryContainer from "./SecondaryContainer";
 
 
 const MainContainer = () => {
@@ -10,7 +11,7 @@ const MainContainer = () => {
 
     if(!movies) return;
 
-    const mainMovie =  movies[2];
+    const mainMovie =  movies[1];
     console.log(mainMovie);
     const {original_title,overview,id} = mainMovie;
  
@@ -18,6 +19,7 @@ const MainContainer = () => {
     <div className="absolute">
         <VedioTitle title={original_title} overview={overview}/>
         <VedioBackground movieId={id}/>
+        <SecondaryContainer/>
     </div>
   )
 }

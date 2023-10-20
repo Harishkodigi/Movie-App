@@ -1,7 +1,7 @@
 
 const VedioTitle = ({title,overview}) => {
   return (
-    <div className=" w-screen aspect-video pt-[20%] px-12 absolute text-white bg-gradient-to-r to-black">
+    <div className=" w-screen aspect-video pt-96 px-12 absolute text-white bg-gradient-to-r to-black">
         <h1 className="text-6xl font-bold">{title}</h1>
         <p className="py-6 text-lg w-1/4">{overview}</p>
         <div className="">
