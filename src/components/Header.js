@@ -42,6 +42,7 @@ const Header = () => {
       <img className="w-48" src={LOGO_URL} alt="logo" />
       {user && (
         <div className="flex ">
+          <button className='text-white bg-purple-800'>Gpt Search</button>
           <img
             className="w-14 h-14 p-2 m-2"
             src="https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"

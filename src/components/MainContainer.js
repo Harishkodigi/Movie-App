@@ -7,12 +7,12 @@ import SecondaryContainer from "./SecondaryContainer";
 const MainContainer = () => {
 
     const movies = useSelector(store => store.movies?.nowPlayingMovies);
-    console.log(movies)
+   
 
     if(!movies) return;
 
-    const mainMovie =  movies[1];
-    console.log(mainMovie);
+    const mainMovie =  movies[3];
+  
     const {original_title,overview,id} = mainMovie;
  
   return (

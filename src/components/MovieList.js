@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 
 const MovieList = ({ title }) => {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
-
+  console.log(movies);
   return (
     <div className="p-6 ">
       <h1 className="text-3xl text-white mx-6 my-4">{title}</h1>
@@ -11,7 +11,9 @@ const MovieList = ({ title }) => {
         <div className="flex w-full">
           {movies?.map((movie) => (
             <MovieCard key={movie.id} posterPath={movie?.poster_path} />
+            
           ))}
+      
         </div>
       </div>
     </div>
